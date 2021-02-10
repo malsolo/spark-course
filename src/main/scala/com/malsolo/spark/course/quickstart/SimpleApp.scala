@@ -1,5 +1,6 @@
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkConf
+package com.malsolo.spark.course.quickstart
+
+import org.apache.spark.{SparkConf, SparkContext}
 
 object SimpleApp {
 
