@@ -15,13 +15,15 @@ object WordCount {
       .flatMap(x => x.split("\\W+"))
       .map(word => word.toLowerCase())
       .map(word => (word, 1))
-      .reduceByKey( (a, b) => a + b )
-      .map( t => (t._2, t._1) )
-      .sortByKey()
+      .reduceByKey(_ + _)
+      .map({ case (x, y) => (y, x)} )
+      .sortByKey(ascending = false)
+      .map( t => t.swap )
+      .take(10)
 
     for (wordCount <- wordCountsSorted) {
-      val count = wordCount._1
-      val word = wordCount._2
+      val word = wordCount._1
+      val count = wordCount._2
       println(s"$word: $count")
     }
 
